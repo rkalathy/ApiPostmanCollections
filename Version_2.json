@@ -1,0 +1,21 @@
+{
+	"id": "137dbdcc-747f-4b9f-958e-6c960c32b9bf",
+	"name": "Version 2",
+	"values": [
+		{
+			"key": "baseURL",
+			"value": "https://gorest.co.in/public/v2",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Restful_Booker",
+			"value": "https://restful-booker.herokuapp.com",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-08-08T02:58:38.059Z",
+	"_postman_exported_using": "Postman/11.57.1"
+}

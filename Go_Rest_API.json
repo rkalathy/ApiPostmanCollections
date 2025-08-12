@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "ab458b16-c8cc-4be3-adff-3f3a82c9debb",
+		"name": "Go Rest API Calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4151610",
+		"_collection_link": "https://apitesting-1258.postman.co/workspace/July2025_Morning8to9~509ae83e-1345-41df-b603-3c8a93597321/collection/4151610-ab458b16-c8cc-4be3-adff-3f3a82c9debb?action=share&source=collection_link&creator=4151610"
+	},
+	"item": [
+		{
+			"name": "List Of Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users?gender=female&status=active&per_page=100",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "female"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						},
+						{
+							"key": "per_page",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creating a New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "{{contentType_JSON}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name}}\", // \"{{}}\" It is used for calling the variables in POSTMAN Tool\r\n    \"gender\": \"{{gender}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Individual User Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "{{contentType_JSON}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/users/:userID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "{{User ID}}"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -i -H \"Accept:application/json\" -H \"Content-Type:application/json\" -H \"Authorization: Bearer 9ee31d62ba2aa3329d51d054896e96ad9f132437c190f2a42145dfb659f8c431\" -XDELETE \"https://gorest.co.in/public/v2/users/7440124\""
+			},
+			"response": []
+		},
+		{
+			"name": "Updating the User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"email\",pm.variables.replaceIn(\"{{$randomEmail}}\"));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "{{contentType_JSON}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{email}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/:userID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "{{User ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Users",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "{{contentType_JSON}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/users/:userID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "{{User ID}}"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -i -H \"Accept:application/json\" -H \"Content-Type:application/json\" -H \"Authorization: Bearer 9ee31d62ba2aa3329d51d054896e96ad9f132437c190f2a42145dfb659f8c431\" -XDELETE \"https://gorest.co.in/public/v2/users/7440124\""
+			},
+			"response": []
+		},
+		{
+			"name": "Check If User is Deleted Or Not",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "{{contentType_JSON}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/users/:userID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "{{User ID}}"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -i -H \"Accept:application/json\" -H \"Content-Type:application/json\" -H \"Authorization: Bearer 9ee31d62ba2aa3329d51d054896e96ad9f132437c190f2a42145dfb659f8c431\" -XDELETE \"https://gorest.co.in/public/v2/users/7440124\""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"//Adding the Authorization Bearer Token for each and every API Request\r",
+					"pm.request.headers.add({\r",
+					"        key: 'Authorization',\r",
+					"        value: pm.collectionVariables.get(\"authToken\")\r",
+					"    });\r",
+					"\r",
+					"//Adding the Content Type for each and every request\r",
+					"pm.request.headers.add({\r",
+					"        key: 'Content-Type',\r",
+					"        value: pm.globals.get(\"contentType_JSON\")\r",
+					"    });\r",
+					"\r",
+					"//pm.iterationData represents the data from the external source that is CSV, JSON File\r",
+					"\r",
+					"if(pm.iterationData.get(\"name\")==undefined)\r",
+					"{\r",
+					"    if(pm.variables.get(\"name\") === undefined) //If the data for a particular vaariable is not present then only add the data\r",
+					"    {\r",
+					"        pm.variables.set(\"name\",pm.variables.replaceIn(\"{{$randomFirstName}}\"));\r",
+					"    }\r",
+					"\r",
+					"    if(pm.variables.get(\"email\") === undefined)\r",
+					"    {\r",
+					"        pm.variables.set(\"email\",pm.variables.replaceIn(\"{{$randomEmail}}\"));\r",
+					"    }\r",
+					"\r",
+					"    let genders=[\"Male\",\"Female\"];\r",
+					"\r",
+					"    //We have to take a random value from the above genders array\r",
+					"    //Math.random() --> Takes a random value between 0 and 1\r",
+					"    //genders.length --> Returns the size of the array\r",
+					"\r",
+					"    //If Math.random returns 0.6 --> 0.6 * 2 = 1.2 --> Math.floor(1.2) = 1\r",
+					"    //If Math.random returns 0.3 --> 0.3 * 2 = 0.6 --> Math.floor(0.6) = 0\r",
+					"\r",
+					"    //Math.floor() --> It will round off the value to the nearest lower integer\r",
+					"    if(pm.variables.get(\"gender\") === undefined)\r",
+					"        pm.variables.set(\"gender\", genders[Math.floor(Math.random() * genders.length)]);\r",
+					"\r",
+					"\r",
+					"    let status = [\"active\", \"inactive\"];\r",
+					"\r",
+					"    if(pm.variables.get(\"status\") === undefined)\r",
+					"    pm.variables.set(\"status\", status[Math.floor(Math.random() * status.length)]);\r",
+					"}\r",
+					"\r",
+					"else \r",
+					"{\r",
+					"    pm.collectionVariables.set(\"requestJSON\",pm.iterationData.toObject());\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"let httpMethods = {\r",
+					"    POST : \"POST\",\r",
+					"    GET : \"GET\",\r",
+					"    PATCH : \"PATCH\",\r",
+					"    PUT: \"PUT\",\r",
+					"    DELETE: \"DELETE\"\r",
+					"};\r",
+					"\r",
+					"Object.freeze(httpMethods);\r",
+					"\r",
+					"let statusCodes = {\r",
+					"    SUCCESS: 200,\r",
+					"    CREATED: 201,\r",
+					"    NO_CONTENT: 204,\r",
+					"    UNAUTHORIZED:401,\r",
+					"    NOT_FOUND:404,\r",
+					"    UNPROCESSABLE_ENTITY:422,\r",
+					"    TOO_MANY_REQUESTS:429\r",
+					"};\r",
+					"\r",
+					"Object.freeze(statusCodes);\r",
+					"\r",
+					"pm.test(\"Validating the Response Time\", function (){\r",
+					"\r",
+					"    let responseTime=pm.response.responseTime;\r",
+					"\r",
+					"    //Checking if the response time is less than or equal to 2 secs\r",
+					"    pm.expect(responseTime).to.be.lessThanOrEqual(2000);\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Validating whether it is a JSON Response or not\",function(){\r",
+					"\r",
+					"    let httpMethod=pm.request.method;\r",
+					"\r",
+					"    switch(httpMethod)\r",
+					"    {\r",
+					"        case httpMethods.POST :\r",
+					"        case httpMethods.GET :\r",
+					"        case httpMethods.PUT :\r",
+					"        case httpMethods.PATCH : {\r",
+					"\r",
+					"                if(pm.info.requestName !== \"Check If User is Deleted Or Not\")\r",
+					"                pm.response.to.have.jsonBody;\r",
+					"                break;\r",
+					"        }\r",
+					"                                \r",
+					"        default: console.log(\"None of the above HTTP Methods are satisfied\");\r",
+					"    }\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Validating the Response Code\", function (){\r",
+					"\r",
+					"    let httpMethod=pm.request.method; //Returns whether this is a POST,GET,PUT,PATCH Call\r",
+					"\r",
+					"    switch(httpMethod)\r",
+					"    {\r",
+					"        case httpMethods.POST : pm.expect(pm.response.code).to.be.eql(statusCodes.CREATED);\r",
+					"                                break;\r",
+					"        case httpMethods.GET : {\r",
+					"\r",
+					"                            if(pm.info.requestName === 'Check If User is Deleted Or Not')\r",
+					"                            {\r",
+					"                                pm.expect(pm.response.code).to.be.eql(statusCodes.NOT_FOUND);\r",
+					"                            }\r",
+					"\r",
+					"                            else\r",
+					"                            pm.expect(pm.response.code).to.be.eql(statusCodes.SUCCESS);\r",
+					"                        }\r",
+					"                                break;                                \r",
+					"        case httpMethods.PUT : pm.expect(pm.response.code).to.be.eql(statusCodes.SUCCESS);\r",
+					"                                break;\r",
+					"        case httpMethods.PATCH : pm.expect(pm.response.code).to.be.eql(statusCodes.SUCCESS);\r",
+					"                                break;\r",
+					"        case httpMethods.DELETE : pm.expect(pm.response.code).to.be.eql(statusCodes.NO_CONTENT);\r",
+					"                                break;\r",
+					"    }\r",
+					"\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Validating the Response Body\",function(){\r",
+					"\r",
+					"    switch(pm.request.method)\r",
+					"    {\r",
+					"        case httpMethods.POST:\r",
+					"         {    \r",
+					"                const response = pm.response.json();\r",
+					"\r",
+					"                //Checking what are the API keys that are present in the JSON Response Body\r",
+					"                pm.expect(response).to.have.keys([\"id\",\"name\",\"email\",\"gender\",\"status\"]);\r",
+					"\r",
+					"                //Destructuring the JSON Response to get the values of the keys\r",
+					"                let {id, name, email, gender, status} = response;\r",
+					"\r",
+					"                pm.variables.set(\"User ID\",id);\r",
+					"\r",
+					"                //Checking whether the ID Generated is a number or not\r",
+					"                \r",
+					"                pm.expect(id).to.be.a('Number');\r",
+					"                pm.expect(name).to.be.a('String');\r",
+					"                pm.expect(email).to.be.a('String');\r",
+					"                pm.expect(gender).to.be.a('String');\r",
+					"                pm.expect(status).to.be.a('String');\r",
+					"\r",
+					"                //Validating the request and response details\r",
+					"                pm.expect(name.toLowerCase()).to.be.eql(pm.variables.get(\"name\").toLowerCase());\r",
+					"                pm.expect(email.toLowerCase()).to.be.eql(pm.variables.get(\"email\").toLowerCase());\r",
+					"                pm.expect(gender.toLowerCase()).to.be.eql(pm.variables.get(\"gender\").toLowerCase());\r",
+					"                pm.expect(status.toLowerCase()).to.be.eql(pm.variables.get(\"status\").toLowerCase());\r",
+					"\r",
+					"                //pm.expect() is an assertion library from CHAI JS\r",
+					"                pm.expect(pm.response.headers.get(\"Content-Type\")).contains('application/json');\r",
+					"        }\r",
+					"        break;\r",
+					"\r",
+					"        case httpMethods.GET: {\r",
+					"\r",
+					"                if(pm.info.requestName === 'List Of Users')\r",
+					"                {\r",
+					"                    const response = pm.response.json();\r",
+					"\r",
+					"                    //Checks if the response body is a JSON Array or not\r",
+					"                    pm.expect(response).to.be.a('Array');\r",
+					"\r",
+					"                    //Fetches the complete set of query parameters in the form of key value pairs\r",
+					"                    let queryParameters=pm.request.url.query; \r",
+					"\r",
+					"                    for(let parameter in queryParameters)\r",
+					"                    {\r",
+					"                        //We are checking whether the gender passed in the query parameters is being reflected in the JSON Body\r",
+					"                        if(parameter.key === 'gender')\r",
+					"                        {\r",
+					"                            //.every() means checks whether the condition is satisfied for each and every data\r",
+					"                            response.map(response => response.gender)\r",
+					"                                .every(gender => gender === parameter.value);\r",
+					"                        }\r",
+					"\r",
+					"                        //We are checking whether the status passed in the query parameters is being reflected in the JSON Body\r",
+					"                        else if(parameter.key === 'status')\r",
+					"                        {\r",
+					"                            response.map(response => response.status)\r",
+					"                                .every(status => status === parameter.value);\r",
+					"                        }\r",
+					"\r",
+					"                        //We are checking whether the per_page passed in the query parameters is being reflected in the JSON Body\r",
+					"                        else if(parameter.key === 'per_page')\r",
+					"                        {\r",
+					"                            pm.expect(response.map(response => response.id).length)\r",
+					"                                .lessThanOrEqual(parameter.value);\r",
+					"                        }\r",
+					"                    }\r",
+					"                }\r",
+					"\r",
+					"\r",
+					"                else if(pm.info.requestName !== \"Check If User is Deleted Or Not\")\r",
+					"                {\r",
+					"                    const response = pm.response.json();\r",
+					"\r",
+					"                    //Checking what are the API keys that are present in the JSON Response Body\r",
+					"                    pm.expect(response).to.have.keys([\"id\",\"name\",\"email\",\"gender\",\"status\"]);\r",
+					"\r",
+					"                    //Destructuring the JSON Response to get the values of the keys\r",
+					"                    let {id, name, email, gender, status} = response;\r",
+					"\r",
+					"                    //Checking whether the ID Generated is a number or not\r",
+					"                    pm.expect(id).to.be.a('Number');\r",
+					"                    pm.expect(name).to.be.a('String');\r",
+					"                    pm.expect(email).to.be.a('String');\r",
+					"                    pm.expect(gender).to.be.a('String');\r",
+					"                    pm.expect(status).to.be.a('String');\r",
+					"\r",
+					"                    //Validating the request and response details\r",
+					"                    pm.expect(name.toLowerCase()).to.be.eql(pm.variables.get(\"name\").toLowerCase());\r",
+					"                    pm.expect(email.toLowerCase()).to.be.eql(pm.variables.get(\"email\").toLowerCase());\r",
+					"                    pm.expect(gender.toLowerCase()).to.be.eql(pm.variables.get(\"gender\").toLowerCase());\r",
+					"                    pm.expect(status.toLowerCase()).to.be.eql(pm.variables.get(\"status\").toLowerCase());\r",
+					"\r",
+					"                    //Checking if the email id contains @ symbol\r",
+					"                    pm.expect(email).to.contain(\"@\");\r",
+					"\r",
+					"                    let pathUserID=pm.request.url.getPath().split(\"/users/\")[1];\r",
+					"\r",
+					"                    pm.expect(id).to.be.eql(Number(pathUserID));\r",
+					"                }\r",
+					"        }\r",
+					"\r",
+					"        break;\r",
+					"\r",
+					"        case httpMethods.PATCH:\r",
+					"        case httpMethods.PUT: {\r",
+					"                const response = pm.response.json();\r",
+					"\r",
+					"                //Checking what are the API keys that are present in the JSON Response Body\r",
+					"                pm.expect(response).to.have.keys([\"id\",\"name\",\"email\",\"gender\",\"status\"]);\r",
+					"\r",
+					"                //Destructuring the JSON Response to get the values of the keys\r",
+					"                let {id, name, email, gender, status} = response;\r",
+					"\r",
+					"                //Checking whether the ID Generated is a number or not\r",
+					"                \r",
+					"                pm.expect(id).to.be.a('Number');\r",
+					"                pm.expect(name).to.be.a('String');\r",
+					"                pm.expect(email).to.be.a('String');\r",
+					"                pm.expect(gender).to.be.a('String');\r",
+					"                pm.expect(status).to.be.a('String');\r",
+					"\r",
+					"                //Validating the request and response details\r",
+					"                pm.expect(name.toLowerCase()).to.be.eql(pm.variables.get(\"name\").toLowerCase());\r",
+					"                pm.expect(email.toLowerCase()).to.be.eql(pm.variables.get(\"email\").toLowerCase());\r",
+					"                pm.expect(gender.toLowerCase()).to.be.eql(pm.variables.get(\"gender\").toLowerCase());\r",
+					"                pm.expect(status.toLowerCase()).to.be.eql(pm.variables.get(\"status\").toLowerCase());\r",
+					"\r",
+					"                //Checking if the email id contains @ symbol\r",
+					"                pm.expect(email).to.contain(\"@\");\r",
+					"\r",
+					"                let pathUserID=pm.request.url.getPath().split(\"/users/\")[1];\r",
+					"\r",
+					"                pm.expect(id).to.be.eql(Number(pathUserID));\r",
+					"\r",
+					"        }\r",
+					"        break;\r",
+					"\r",
+					"        case httpMethods.DELETE: {\r",
+					"            const response=pm.response.text();\r",
+					"            pm.expect(response).is.empty; //Checking whether the response body is empty or not\r",
+					"        }\r",
+					"        break;\r",
+					"    }\r",
+					"\r",
+					"})\r",
+					"\r",
+					"\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authToken",
+			"value": "Bearer 9ee31d62ba2aa3329d51d054896e96ad9f132437c190f2a42145dfb659f8c431",
+			"type": "string"
+		},
+		{
+			"key": "requestJSON",
+			"value": ""
+		}
+	]
+}
